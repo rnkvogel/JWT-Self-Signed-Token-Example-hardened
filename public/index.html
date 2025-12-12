@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Secure Viewer</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; background:#050608; color:#f5f5f5; margin:0; }
+    .wrap { max-width:720px; margin:40px auto; padding:0 16px; }
+    .card { background:#0b0f1a; border:1px solid #262a37; border-radius:12px; padding:16px; }
+    input { width:100%; padding:10px; border-radius:10px; border:1px solid #262a37; background:#050712; color:#f5f5f5; }
+    button { margin-top:12px; padding:10px 14px; border-radius:999px; border:none; background:#4f8cff; color:white; font-weight:600; cursor:pointer; }
+    .muted { color:#9ca3af; font-size:13px; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h2>View Stream</h2>
+      <p class="muted">This page requests a short-lived token from the nerdits.com token endpoint.</p>
+
+      <label>Account ID</label>
+      <input id="accountId" value="LZsuF8" />
+
+      <label style="margin-top:10px;display:block;">Stream Name</label>
+      <input id="streamName" value="secure" />
+
+      <button id="viewBtn">View Stream</button>
+
+      <div id="status" class="muted"></div>
+    </div>
+  </div>
+
+<script>
+async function getCsrf() {
+  const r = await fetch("/api/csrf", { credentials: "same-origin" });
+  if (!r.ok) throw new Error("Failed CSRF");
+  return (await r.json()).csrfToken;
+}
+
+document.getElementById("viewBtn").addEventListener("click", async () => {
+  const status = document.getElementById("status");
+  status.textContent = "Requesting token…";
+
+  const accountId = document.getElementById("accountId").value.trim();
+  const streamName = document.getElementById("streamName").value.trim();
+
+  try {
+    const csrfToken = await getCsrf();
+
+    const r = await fetch("/api/token", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken
+      },
+      body: JSON.stringify({ accountId, streamName })
+    });
+
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || "Token error");
+
+    const url =
+      "https://viewer.millicast.com/?streamId=" +
+      encodeURIComponent(data.streamId) +
+      "&token=" +
+      encodeURIComponent(data.token);
+
+    status.textContent = "Opening viewer…";
+    window.open(url, "_blank");
+  } catch (e) {
+    status.textContent = "Error: " + e.message;
+  }
+});
+</script>
+</body>
+</html>
