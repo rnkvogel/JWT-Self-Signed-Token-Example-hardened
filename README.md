@@ -4,6 +4,7 @@ This project provides a secure, server-side JWT token gateway for Millicast (Dol
 It exposes a simple “View Stream” page that requests a short-lived subscribe token from your server and opens the official Millicast viewer. The master token never leaves the server.
 
 What This Solves
+
 ✅ What this setup protects
 The Millicast master token is never exposed to browsers
 Only your allowed domain (e.g. https://YOURSITE.com) can mint viewer tokens
@@ -99,6 +100,7 @@ npm start
 Open:
 http://localhost:3000
 Production Deployment (Beginner Friendly)
+
 ✅ HTTPS is REQUIRED
 
 This project uses secure cookies:
@@ -107,7 +109,9 @@ SameSite=Strict
 Secure=true
 
 That means:
+
 ❌ HTTP will NOT work
+
 ✅ You must use HTTPS
 
 Common deployment options
