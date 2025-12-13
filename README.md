@@ -66,7 +66,7 @@ The only website allowed to request tokens.
 
 Example:
 
-ALLOW_ORIGIN=https://nerdits.com
+ALLOW_ORIGIN=https://YOURSITE.com
 Requests from any other origin will be rejected.
 COOKIE_SECRET
 A long random secret used to sign session cookies.
