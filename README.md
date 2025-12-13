@@ -161,12 +161,19 @@ https://viewer.millicast.com/?streamId=LZsuF8/secure&token=...
 Security Features Included
 
 ✅ Master token never exposed
+
 ✅ Short-lived subscribe tokens
+
 ✅ SameSite=Strict cookies
+
 ✅ CSRF protection
+
 ✅ Origin validation
+
 ✅ Rate limiting
+
 ✅ IP allow/block support (IPv4 + IPv6)
+
 ✅ Clickjacking protection (frame-ancestors 'none')
 
 Optional Hardening (Recommended)
@@ -189,13 +196,6 @@ Check ALLOW_ORIGIN exactly matches your site
 Confirm HTTPS is enabled
 Check cookies are being set
 
-Summary
 
-This project gives you:
-
-A clean Node.js replacement for your PHP debug page
-A secure viewer entry point
-A token endpoint that cannot be spoofed by copied sites
-A production-ready foundation for Millicast secure playback
 
 
