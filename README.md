@@ -6,6 +6,7 @@ It exposes a simple “View Stream” page that requests a short-lived subscribe
 What This Solves
 
 ✅ What this setup protects
+
 The Millicast master token is never exposed to browsers
 Only your allowed domain (e.g. https://YOURSITE.com) can mint viewer tokens
 A copied / mirrored site cannot call your token endpoint
@@ -99,7 +100,7 @@ npm start
 
 Open:
 http://localhost:3000
-Production Deployment (Beginner Friendly)
+Production Deployment
 
 ✅ HTTPS is REQUIRED
 
@@ -125,7 +126,7 @@ Example: Nginx reverse proxy
 Node runs on localhost:3000, Nginx serves HTTPS.
 server {
   listen 443 ssl;
-  server_name nerdits.com;
+  server_name YOURSITE.com;
 
   ssl_certificate     /path/to/fullchain.pem;
   ssl_certificate_key /path/to/privkey.pem;
