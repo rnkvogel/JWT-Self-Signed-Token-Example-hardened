@@ -162,7 +162,7 @@ Server returns:
 
 
 Browser opens:
-https://viewer.millicast.com/?streamId=LZsuF8/secure&token=...
+https://viewer.millicast.com/?streamId=kn9WAD/secure&token=...
 Security Features Included
 
 ✅ Master token never exposed
