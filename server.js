@@ -9,7 +9,7 @@ const path = require("path");
 
 const app = express();
 
-const ALLOW_ORIGIN = process.env.ALLOW_ORIGIN || "https://nerdits.com";
+const ALLOW_ORIGIN = process.env.ALLOW_ORIGIN || "https://YOURSITE.com";
 const MASTER_TOKEN = process.env.MASTER_TOKEN || "";
 const COOKIE_SECRET = process.env.COOKIE_SECRET || "dev-only-change-me";
 
@@ -170,4 +170,5 @@ app.use((err, _req, res, _next) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on :${port}`));
+
 
